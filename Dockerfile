@@ -5,6 +5,7 @@
 apt-get update -y
 apt-get install git wget curl cmake build-essential apt-utils unzip -y
 apt-get install libboost-dev libboost-system-dev libboost-thread-dev libboost-test-dev libboost-all-dev zlib1g-dev bzip2 libbz2-dev liblzma-dev -y
+apt-get install libfftw3-dev libfftw3-doc libsndfile-dev -y
 
 # LuaJIT and LuaRocks
 git clone https://github.com/torch/luajit-rocks.git
@@ -36,6 +37,16 @@ cd openmpi-3.0.1; mkdir build; cd build
 ../configure --prefix=$HOME/usr --enable-mpi-cxx --enable-shared --with-slurm --enable-mpi-ext=affinity
 make -j 20 all
 make install
+cd ../..
 
 # TorchMPI
 MPI_CXX_COMPILER=$HOME/usr/bin/mpicxx ~/usr/bin/luarocks install torchmpi
+
+# wav2letter packages
+git clone https://github.com/facebookresearch/wav2letter.git
+cd wav2letter
+cd gtn && ~/usr/bin/luarocks make rocks/gtn-scm-1.rockspec && cd ..
+cd speech && ~/usr/bin/luarocks make rocks/speech-scm-1.rockspec && cd ..
+cd torchnet-optim && ~/usr/bin/luarocks make rocks/torchnet-optim-scm-1.rockspec && cd ..
+cd wav2letter && ~/usr/bin/luarocks make rocks/wav2letter-scm-1.rockspec && cd ..
+cd beamer && KENLM_INC=/kenlm ~/usr/bin/luarocks make rocks/beamer-scm-1.rockspec && cd ..
