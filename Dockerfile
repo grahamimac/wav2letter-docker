@@ -3,7 +3,7 @@
 
 # Install dependencies
 apt-get update -y
-apt-get install git wget curl cmake build-essential apt-utils -y
+apt-get install git wget curl cmake build-essential apt-utils unzip -y
 apt-get install libboost-dev libboost-system-dev libboost-thread-dev libboost-test-dev libboost-all-dev zlib1g-dev bzip2 libbz2-dev liblzma-dev -y
 
 # LuaJIT and LuaRocks
@@ -28,3 +28,14 @@ make install
 cp -a lib/* ~/usr/lib
 cd ../..
 
+# OpenMPI
+wget https://www.open-mpi.org/software/ompi/v3.0/downloads/openmpi-3.0.1.tar.bz2
+tar xfj openmpi-3.0.1.tar.bz2
+rm openmpi-3.0.1.tar.bz2 
+cd openmpi-3.0.1; mkdir build; cd build
+../configure --prefix=$HOME/usr --enable-mpi-cxx --enable-shared --with-slurm --enable-mpi-ext=affinity
+make -j 20 all
+make install
+
+# TorchMPI
+MPI_CXX_COMPILER=$HOME/usr/bin/mpicxx ~/usr/bin/luarocks install torchmpi
