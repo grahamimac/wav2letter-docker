@@ -50,3 +50,11 @@ cd speech && ~/usr/bin/luarocks make rocks/speech-scm-1.rockspec && cd ..
 cd torchnet-optim && ~/usr/bin/luarocks make rocks/torchnet-optim-scm-1.rockspec && cd ..
 cd wav2letter && ~/usr/bin/luarocks make rocks/wav2letter-scm-1.rockspec && cd ..
 cd beamer && KENLM_INC=/kenlm ~/usr/bin/luarocks make rocks/beamer-scm-1.rockspec && cd ..
+
+# Pre-process data (still need to test this in container)
+for f in dev-clean train-clean-100 train-clean-360 train-other-500 dev-other test-clean test-other; do
+wget http://www.openslr.org/resources/12/${f}.tar.gz
+tar xfvz ${f}.tar.gz
+done
+~/usr/bin/luajit /wav2letter/data/librispeech/create.lua /LibriSpeech /librispeech-proc
+~/usr/bin/luajit /wav2letter/data/utils/create-sz.lua /librispeech-proc/train-clean-100 /librispeech-proc/train-clean-360 /librispeech-proc/train-other-500 /librispeech-proc/dev-clean /librispeech-proc/dev-other /librispeech-proc/test-clean /librispeech-proc/test-other
