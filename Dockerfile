@@ -1,5 +1,5 @@
 # Install wav2letter CPU
-# Start with latest Ubuntu
+# Start with latest Ubuntu docker image
 
 # Install dependencies
 apt-get update -y
