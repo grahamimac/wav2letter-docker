@@ -43,7 +43,7 @@ RUN git clone https://github.com/facebookresearch/wav2letter.git && \
 	cd torchnet-optim && ~/usr/bin/luarocks make rocks/torchnet-optim-scm-1.rockspec && cd .. && \
 	cd wav2letter && ~/usr/bin/luarocks make rocks/wav2letter-scm-1.rockspec && cd .. && \
 	cd beamer && KENLM_INC=/kenlm ~/usr/bin/luarocks make rocks/beamer-scm-1.rockspec && cd .. && \
-	cd .. && \
+	cd ..
 
 RUN for f in dev-clean train-clean-100 train-clean-360 train-other-500 dev-other test-clean test-other; do && \
 	wget http://www.openslr.org/resources/12/${f}.tar.gz && \
