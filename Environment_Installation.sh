@@ -32,6 +32,7 @@ echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$INTEL_DIR:$MKL_DIR' >> ~/.bashrc
 echo 'export CMAKE_LIBRARY_PATH=$LD_LIBRARY_PATH' >> ~/.bashrc
 echo 'export CMAKE_INCLUDE_PATH=$CMAKE_INCLUDE_PATH:$MKL_INC_DIR' >> ~/.bashrc
 source ~/.bashrc
+cd ..
 
 # LuaJIT and LuaRocks
 git clone https://github.com/torch/luajit-rocks.git
