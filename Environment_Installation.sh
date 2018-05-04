@@ -79,6 +79,3 @@ cd torchnet-optim && ~/usr/bin/luarocks make rocks/torchnet-optim-scm-1.rockspec
 cd wav2letter && ~/usr/bin/luarocks make rocks/wav2letter-scm-1.rockspec && cd ..
 cd beamer && KENLM_INC=/kenlm ~/usr/bin/luarocks make rocks/beamer-scm-1.rockspec && cd ..
 cd ..
-
-# Ready
-# Example: ~/usr/bin/luajit /wav2letter/test.lua /librispeech-glu-highdropout-cpu.bin -progress -show -test dev-clean -save -datadir /librispeech-proc/ -dictdir /librispeech-proc/ -gfsai

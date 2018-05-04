@@ -19,3 +19,6 @@ rm 3-gram.pruned.3e-7.arpa.gz 3-gram.pruned.3e-7.arpa
 
 # Get model and pre-train
 wget https://s3.amazonaws.com/wav2letter/models/librispeech-glu-highdropout-cpu.bin
+
+# Ready
+# Example: ~/usr/bin/luajit /wav2letter/test.lua /librispeech-glu-highdropout-cpu.bin -progress -show -test dev-clean -save -datadir /librispeech-proc/ -dictdir /librispeech-proc/ -gfsai
