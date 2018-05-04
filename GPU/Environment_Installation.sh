@@ -6,6 +6,8 @@
 apt-get update -y
 apt-get install libfftw3-dev libfftw3-doc libsndfile-dev -y
 
+# Need to find MKL libraries and change env so other programs can locate them...
+
 # LuaJIT and LuaRocks
 git clone https://github.com/torch/luajit-rocks.git
 cd luajit-rocks
@@ -34,7 +36,7 @@ wget https://www.open-mpi.org/software/ompi/v3.0/downloads/openmpi-3.0.1.tar.bz2
 tar xfj openmpi-3.0.1.tar.bz2
 rm openmpi-3.0.1.tar.bz2 
 cd openmpi-3.0.1; mkdir build; cd build
-../configure --prefix=$HOME/usr --enable-mpi-cxx --enable-shared --with-slurm --enable-mpi-thread-multiple --enable-mpi-ext=affinity,cuda #--with-cuda=/public/apps/cuda/9.0 - need to find where CUDA is on AMI
+../configure --prefix=$HOME/usr --enable-mpi-cxx --enable-shared --with-slurm --enable-mpi-ext=affinity,cuda #--with-cuda=/public/apps/cuda/9.0 - need to find where CUDA is on AMI
 make -j 20 all
 make install
 cd ../..
